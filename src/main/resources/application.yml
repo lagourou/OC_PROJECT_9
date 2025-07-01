@@ -1,0 +1,6 @@
+spring:
+  application:
+    name: medilabo
+  data:
+    mongodb:
+      uri: mongodb://mongo:27017/patientdb
