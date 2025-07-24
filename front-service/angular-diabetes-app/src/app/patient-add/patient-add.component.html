@@ -1,0 +1,35 @@
+<h2 class="text-xl font-bold mb-4">Ajouter un nouveau patient</h2>
+
+<form (ngSubmit)="addPatient()">
+    <label>Prénom</label>
+    <input [(ngModel)]="patient.prenom" name="prenom"
+        class="border p-2 block mb-2" required />
+
+    <label>Nom</label>
+    <input [(ngModel)]="patient.nom" name="nom" class="border p-2 block mb-2"
+        required />
+
+    <label>Date de naissance</label>
+    <input type="date" [(ngModel)]="patient.dateDeNaissance"
+        name="dateDeNaissance" class="border p-2 block mb-2" required />
+
+    <label>Genre</label>
+    <select [(ngModel)]="patient.genre" name="genre"
+        class="border p-2 block mb-2" required>
+        <option value="M">Homme</option>
+        <option value="F">Femme</option>
+    </select>
+
+    <label>Adresse postale</label>
+    <input [(ngModel)]="patient.adresse" name="adressePostale"
+        class="border p-2 block mb-2" />
+
+    <label>Téléphone</label>
+    <input [(ngModel)]="patient.telephone" name="telephone"
+        class="border p-2 block mb-2" />
+
+    <button type="submit"
+        class="bg-green-600 text-white px-4 py-2 rounded">Ajouter</button>
+</form>
+
+<div *ngIf="error" class="text-red-600 mt-4">{{ error }}</div>

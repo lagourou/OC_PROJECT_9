@@ -1,0 +1,36 @@
+ <form (submit)="onSubmit()">
+    <label for="username">Nom d’utilisateur</label>
+    <input
+        id="username"
+        type="text"
+        [(ngModel)]="username"
+        name="username"
+        required
+        class="border p-2 rounded w-full" />
+
+    <label for="password" class="mt-4">Mot de passe</label>
+    <input
+        id="password"
+        type="password"
+        [(ngModel)]="password"
+        name="password"
+        required
+        class="border p-2 rounded w-full" />
+
+    <p class="text-red-600 my-2" *ngIf="error">{{ error }}</p>
+
+    <button
+        type="submit"
+        [disabled]="loading"
+        class="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded mt-4 flex justify-center items-center">
+        <svg *ngIf="loading" class="animate-spin h-5 w-5 mr-2"
+            viewBox="0 0 24 24">
+            <circle class="opacity-25" cx="12" cy="12" r="10"
+                stroke="currentColor" stroke-width="4" fill="none" />
+            <path class="opacity-75" fill="currentColor"
+                d="M4 12a8 8 0 018-8v8z" />
+        </svg>
+        {{ loading ? "Connexion…" : "Connexion" }}
+    </button>
+
+</form>

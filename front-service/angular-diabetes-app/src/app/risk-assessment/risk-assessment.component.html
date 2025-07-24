@@ -1,0 +1,15 @@
+<h2>Risque attendu</h2>
+
+<div class="p-6 flex flex-col items-center space-y-4">
+    <div class="text-3xl font-bold"
+        [ngClass]="{
+            'text-green-600': assessment?.riskLevel==='None',
+            'text-yellow-600': assessment?.riskLevel==='Borderline',
+            'text-red-600': assessment?.riskLevel==='In Danger',
+            'text-red-800': assessment?.riskLevel==='Early onset'
+            }">
+        Risque : {{ assessment?.riskLevel }}
+    </div>
+    <p>Risque pour {{ patient?.prenom }} {{ patient?.nom }}</p>
+
+</div>

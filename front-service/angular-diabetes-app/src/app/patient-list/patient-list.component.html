@@ -1,0 +1,36 @@
+<h2>Liste des patients</h2>
+<div class="p-6">
+    <div class="flex justify-between items-center mb-4">
+        <input [(ngModel)]="filter" placeholder="Rechercher..."
+            class="border p-2 rounded" />
+    </div>
+    <a routerLink="/patients/add"
+        class="bg-green-600 text-white px-4 py-2 rounded">
+        ➕ Ajouter un patient
+    </a>
+
+    <table class="w-full bg-white rounded shadow">
+        <thead class="bg-red-100">
+            <tr>
+                <th class="p-2 text-left">Prénom</th>
+                <th class="p-2 text-left">Nom</th>
+                <th class="p-2 text-left">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr *ngFor="let p of filteredPatients(); trackBy: trackById">
+                <td class="p-2">{{ p.prenom }}</td>
+                <td class="p-2">{{ p.nom }}</td>
+                <td class="p-2">
+                    <a [routerLink]="['/patients', p.id]"
+                        class="text-blue-600 hover:underline">Détail</a>
+                    <a [routerLink]="['/patients', p.id, 'edit']"
+                        class="bg-blue-600 hover:bg-blue-700 text-white px-4 py-2 rounded ml-2">
+                        Modifier
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
