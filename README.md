@@ -68,13 +68,13 @@ OC_PROJECT_9/
 
 ## Technologies utilisées
 
-- Java 17 - Langage de programmation
-- Spring Boot - Framework backend
-- Angular - Framework frontend
-- Tailwind CSS - Framework CSS
-- MongoDB - Base de données NoSQL
-- MySQL - Base de données relationnelle
-- Docker - Conteneurisation des services
+- **Java 17** - Langage de programmation
+- **Spring Boot** - Framework backend
+- **Angular** - Framework frontend
+- **Tailwind CSS** - Framework CSS
+- **MongoDB** - Base de données NoSQL
+- **MySQL** - Base de données relationnelle
+- **Docker** - Conteneurisation des services
 
 ## Fonctionnalités principales côté utilisateur
 
