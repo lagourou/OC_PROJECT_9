@@ -1,0 +1,6 @@
+/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/gateway-service/src/main/java/com/oc_p9/gateway_service/GatewayServiceApplication.java
+/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/gateway-service/src/main/java/com/oc_p9/gateway_service/configuration/CorsConfig.java
+/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/gateway-service/src/main/java/com/oc_p9/gateway_service/configuration/JwtAuthenticationFilter.java
+/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/gateway-service/src/main/java/com/oc_p9/gateway_service/configuration/SecurityConfig.java
+/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/gateway-service/src/main/java/com/oc_p9/gateway_service/controller/AuthController.java
+/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/gateway-service/src/main/java/com/oc_p9/gateway_service/util/JwtUtil.java
