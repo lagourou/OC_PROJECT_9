@@ -47,6 +47,8 @@ docker-compose up --build
 
 ## Structure du projet
 
+```
+
 OC_PROJECT_9/
 │
 ├── diabetes-assessment-service ← Évalue le risque de diabète
@@ -55,6 +57,8 @@ OC_PROJECT_9/
 ├── note-service ← Gestion des notes médicales (MongoDB)
 ├── patient-service ← Gestion des patients (MySQL)
 ├── docker-compose.yml ← Orchestration des conteneurs
+
+```
 
 ## Sécurité et communication
 
