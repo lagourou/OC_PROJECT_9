@@ -19,6 +19,6 @@ export class NoteService {
   }
 
   getNotesByPatient(patId: number): Observable<NoteDto[]> {
-    return this.http.get<NoteDto[]>(`${this.baseUrl}/patient/${patId}`);
+    return this.http.get<NoteDto[]>(`${this.baseUrl}/${patId}`);
   }
 }

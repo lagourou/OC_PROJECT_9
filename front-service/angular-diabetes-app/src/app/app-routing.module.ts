@@ -38,15 +38,15 @@ const routes: Routes = [
       {
         path: "patients/:id/notes/add",
         loadComponent: () =>
-          import("./note-detail/note-add.component").then(
+          import("./note-add/note-add.component").then(
             (m) => m.NoteAddComponent
           ),
       },
       {
         path: "patients/:id/notes",
         loadComponent: () =>
-          import("./note-list/note-list.component").then(
-            (m) => m.NoteListComponent
+          import("./note-detail/note-detail.component").then(
+            (m) => m.NoteDetailComponent
           ),
       },
       {

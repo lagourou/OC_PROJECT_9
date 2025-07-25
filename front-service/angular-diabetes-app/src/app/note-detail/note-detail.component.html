@@ -1,0 +1,18 @@
+<h2 class="text-xl font-semibold mb-4">Notes du patient</h2>
+
+<ng-container *ngIf="notes.length > 0; else noNotes">
+  <ul class="list-disc pl-6 text-gray-800">
+    <li *ngFor="let note of notes">{{ note }}</li>
+  </ul>
+</ng-container>
+
+<ng-template #noNotes>
+  <p class="italic text-gray-500">Aucune note disponible</p>
+</ng-template>
+
+<a
+  [routerLink]="['/patients', patientId, 'notes', 'add']"
+  class="text-blue-600 hover:underline mt-4 inline-block"
+>
+  ➕ Ajouter une note
+</a>
