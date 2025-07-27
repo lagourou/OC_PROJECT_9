@@ -77,9 +77,21 @@ La documentation du projet est hébergée sur les pages GitHub :
 
 ### Gateway-service (Sécurité)
 
-- [**Rapport JaCoCo**](https://lagourou.github.io/OC_PROJECT_9/gateway-service/target/site/jacoco/index.html) — Couverture des tests
-- [**JavaDoc**](https://lagourou.github.io/OC_PROJECT_9/apidocs/index.html) — Documentation du code Java
-- [**Rapport Surefire**](https://lagourou.github.io/OC_PROJECT_9gateway-service/target/site/surefire-report.html) — Résultats d'exécution des tests
+- [**JavaDoc**](https://lagourou.github.io/OC_PROJECT_9/gateway-service/apidocs/index.html) — Documentation du code Java
+- [**Rapport JaCoCo**](https://lagourou.github.io/OC_PROJECT_9/gateway-service/jacoco/index.html) — Couverture du code
+- [**Rapport Surefire**](https://lagourou.github.io/OC_PROJECT_9/gateway-service/surefire-report.html) — Résultats des tests
+
+### Patient-service
+
+- [**JavaDoc**](https://lagourou.github.io/OC_PROJECT_9/patient-service/apidocs/index.html)
+
+### Note-service
+
+- [**JavaDoc**](https://lagourou.github.io/OC_PROJECT_9/note-service/apidocs/index.html)
+
+### Diabetes-assessment-service
+
+- [**JavaDoc**](https://lagourou.github.io/OC_PROJECT_9/assessment-service/apidocs/index.html)
 
 ---
 
