@@ -1,0 +1,71 @@
+name: Rapport de tests et documentation
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  generate-and-publish:
+    runs-on: ubuntu-latest
+    name: Build & Publish Reports
+
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Cache Maven repository
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-maven-${{ hashFiles('**/pom.xml') }}
+          restore-keys: |
+            ${{ runner.os }}-maven-
+
+      - name: Set up JDK 17
+        uses: actions/setup-java@v3
+        with:
+          java-version: "17"
+          distribution: "temurin"
+
+      # 1. Build + raport pour gateway-service
+      - name: Build gateway-service
+        working-directory: gateway-service
+        run: mvn clean verify jacoco:report surefire-report:report-only javadoc:javadoc
+
+      # 2. Build la Javadoc pour patient-service
+      - name: Javadoc - patient-service
+        working-directory: patient-service
+        run: mvn javadoc:javadoc
+
+      # 3. Build la Javadoc pour note-service
+      - name: Javadoc - note-service
+        working-directory: note-service
+        run: mvn javadoc:javadoc
+
+      # 4. Build Javadoc pour diabetes-assessment-service
+      - name: Javadoc - diabetes-assessment-service
+        working-directory: diabetes-assessment-service
+        run: mvn javadoc:javadoc
+
+      # 5. Organisez tous les documents et rapports dans le dossier gh-pages
+      - name: Préparer le contenu des pages GitHub
+        run: |
+          mkdir -p gh-pages/gateway-service
+          cp -r gateway-service/target/site/jacoco gh-pages/gateway-service/
+          cp -r gateway-service/target/site/apidocs gh-pages/gateway-service/
+          cp gateway-service/target/site/surefire-report.html gh-pages/gateway-service/
+
+          mkdir -p gh-pages/patient-service
+          cp -r patient-service/target/site/apidocs gh-pages/patient-service/
+
+          mkdir -p gh-pages/note-service
+          cp -r note-service/target/site/apidocs gh-pages/note-service/
+
+          mkdir -p gh-pages/assessment-service
+          cp -r diabetes-assessment-service/target/site/apidocs gh-pages/assessment-service/
+
+      # 6. Déployez tout sur les pages GitHub
+      - name: Publier sur les pages GitHub
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          personal_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: gh-pages

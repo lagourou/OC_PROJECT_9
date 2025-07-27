@@ -75,6 +75,8 @@ mvn javadoc:javadoc
 
 La documentation du projet est hébergée sur les pages GitHub :
 
+### Gateway-service (Sécurité)
+
 - [**Rapport JaCoCo**](https://lagourou.github.io/OC_PROJECT_9/gateway-service/target/site/jacoco/index.html) — Couverture des tests
 - [**JavaDoc**](https://lagourou.github.io/OC_PROJECT_9/apidocs/index.html) — Documentation du code Java
 - [**Rapport Surefire**](https://lagourou.github.io/OC_PROJECT_9gateway-service/target/site/surefire-report.html) — Résultats d'exécution des tests
