@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="en"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>JwtUtil.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">gateway-service</a> &gt; <a href="index.source.html" class="el_package">com.oc_p9.gateway_service.util</a> &gt; <span class="el_source">JwtUtil.java</span></div><h1>JwtUtil.java</h1><pre class="source lang-java linenums">package com.oc_p9.gateway_service.util;
+
+import io.jsonwebtoken.*;
+import io.jsonwebtoken.security.Keys;
+
+import org.springframework.beans.factory.annotation.Value;
+import org.springframework.stereotype.Component;
+
+import java.nio.charset.StandardCharsets;
+import java.security.Key;
+import java.util.Date;
+
+/**
+ * Classe pour gérer les opérations liées au JWT.
+ * Elle permet de créer, valider et lire les informations d'un token.
+ */
+@Component
+public class JwtUtil {
+
+    private final Key secretKey;
+<span class="fc" id="L21">    private final long jwtExpirationMs = 3600000; // Durée de validité du token en millisecondes (1h)</span>
+
+    /**
+     * Initialise la clé secrète utilisée pour signer les tokens.
+     *
+     * @param secret la clé secrète définie dans le fichier de configuration
+     */
+<span class="fc" id="L28">    public JwtUtil(@Value(&quot;${jwt.secret}&quot;) String secret) {</span>
+<span class="fc" id="L29">        this.secretKey = Keys.hmacShaKeyFor(secret.getBytes(StandardCharsets.UTF_8));</span>
+<span class="fc" id="L30">    }</span>
+
+    /**
+     * Génère un token JWT pour un utilisateur.
+     *
+     * @param username le nom de l'utilisateur
+     * @return un token signé avec une date de création et une date d’expiration
+     */
+    public String generateToken(String username) {
+<span class="fc" id="L39">        return Jwts.builder()</span>
+<span class="fc" id="L40">                .setSubject(username)</span>
+<span class="fc" id="L41">                .setIssuedAt(new Date()) // date de création du token</span>
+<span class="fc" id="L42">                .setExpiration(new Date(System.currentTimeMillis() + jwtExpirationMs)) // expiration dans 1h</span>
+<span class="fc" id="L43">                .signWith(secretKey, SignatureAlgorithm.HS256) // algorithme de signature</span>
+<span class="fc" id="L44">                .compact();</span>
+    }
+
+    /**
+     * Vérifie si un token est valide.
+     *
+     * @param token le token à vérifier
+     * @return vrai si le token est bien formé et non expiré, sinon faux
+     */
+    public boolean validateToken(String token) {
+        try {
+<span class="fc" id="L55">            Jwts.parserBuilder().setSigningKey(secretKey).build().parseClaimsJws(token);</span>
+<span class="fc" id="L56">            return true;</span>
+<span class="fc" id="L57">        } catch (JwtException e) {</span>
+<span class="fc" id="L58">            return false;</span>
+        }
+    }
+
+    /**
+     * Extrait le nom d’utilisateur contenu dans le token.
+     *
+     * @param token le token JWT
+     * @return le nom de l’utilisateur (username)
+     */
+    public String getUsernameFromToken(String token) {
+<span class="fc" id="L69">        return Jwts.parserBuilder().setSigningKey(secretKey).build()</span>
+<span class="fc" id="L70">                .parseClaimsJws(token).getBody().getSubject();</span>
+    }
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

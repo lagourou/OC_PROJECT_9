@@ -1,5 +1,0 @@
-com/oc_p9/gateway_service/configuration/SecurityConfigTest.class
-com/oc_p9/gateway_service/controller/AuthControllerTest.class
-com/oc_p9/gateway_service/configuration/JwtAuthenticationFilterTest.class
-com/oc_p9/gateway_service/GatewayServiceApplicationTests.class
-com/oc_p9/gateway_service/util/JwtUtilTest.class
