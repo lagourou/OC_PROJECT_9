@@ -1,0 +1,8 @@
+com.oc_p9.patient_service
+com.oc_p9.patient_service.controller
+com.oc_p9.patient_service.dto
+com.oc_p9.patient_service.exception
+com.oc_p9.patient_service.mapper
+com.oc_p9.patient_service.model
+com.oc_p9.patient_service.repository
+com.oc_p9.patient_service.service

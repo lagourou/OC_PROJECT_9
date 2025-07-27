@@ -1,0 +1,8 @@
+com.oc_p9.note_service
+com.oc_p9.note_service.controller
+com.oc_p9.note_service.dto
+com.oc_p9.note_service.exception
+com.oc_p9.note_service.mapper
+com.oc_p9.note_service.model
+com.oc_p9.note_service.repository
+com.oc_p9.note_service.service

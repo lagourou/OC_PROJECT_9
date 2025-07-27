@@ -59,10 +59,4 @@ public class PatientController {
         return ResponseEntity.status(HttpStatus.CREATED).body(patientMapper.toDto(savedPatient));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deletePatient(@PathVariable int id) {
-        patientService.deletedPatient(id);
-        return ResponseEntity.noContent().build();
-    }
-
 }

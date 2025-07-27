@@ -16,7 +16,6 @@ coverage/
 .env.local
 
 # Java / Maven / STS
-target/
 .mvn/wrapper/maven-wrapper.jar
 *.class
 *.log

@@ -1,4 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.oc_p9.gateway_service.configuration.JwtAuthenticationFilterTest
--------------------------------------------------------------------------------
-Tests run: 4, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 18.01 s -- in com.oc_p9.gateway_service.configuration.JwtAuthenticationFilterTest

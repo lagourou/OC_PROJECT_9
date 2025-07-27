@@ -8,9 +8,17 @@ import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.reactive.CorsWebFilter;
 import org.springframework.web.cors.reactive.UrlBasedCorsConfigurationSource;
 
+/**
+ * Configuration CORS pour autoriser les appels du frontend.
+ */
 @Configuration
 public class CorsConfig {
 
+    /**
+     * Définit les règles CORS : origine autorisée, en-têtes et méthodes acceptées.
+     *
+     * @return Un filtre CORS pour l'application.
+     */
     @Bean
     public CorsWebFilter corsFilter() {
         CorsConfiguration config = new CorsConfiguration();
@@ -25,3 +33,4 @@ public class CorsConfig {
         return new CorsWebFilter(source);
     }
 }
+

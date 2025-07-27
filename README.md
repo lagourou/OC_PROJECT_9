@@ -45,6 +45,42 @@ docker-compose up --build
 
 - Interface Web : [http://localhost:8085](http://localhost:8085)
 
+---
+
+# Tests Unitaires
+
+L'accent a été mis sur les tests liés à la sécurité (authentification JWT, filtres, autorisations) car c’est un point critique dans cette application
+
+Lancer les tests avec :
+
+```bash
+cd gateway-service
+mvn test
+```
+
+Cette commande génère aussi les rapport Jacoco et Surefire :
+
+- **Jacoco** - Rapport de couverture du code
+- **Surefire** - Rapport d'affichage des tests unitaires
+
+---
+
+## Documentation
+
+Commande pour génèrer le rapport Javadoc :
+
+```bash
+mvn javadoc:javadoc
+```
+
+La documentation du projet est hébergée sur les pages GitHub :
+
+- [**Rapport JaCoCo**](https://lagourou.github.io/OC_PROJECT_9/gateway-service/target/site/jacoco/index.html) — Couverture des tests
+- [**JavaDoc**](https://lagourou.github.io/OC_PROJECT_9/apidocs/index.html) — Documentation du code Java
+- [**Rapport Surefire**](https://lagourou.github.io/OC_PROJECT_9gateway-service/target/site/surefire-report.html) — Résultats d'exécution des tests
+
+---
+
 ## Structure du projet
 
 ```
@@ -56,7 +92,7 @@ OC_PROJECT_9/
 ├── gateway-service ← Point d'entrée sécurisé
 ├── note-service ← Gestion des notes médicales (MongoDB)
 ├── patient-service ← Gestion des patients (MySQL)
-├── docker-compose.yml ← Orchestration des conteneurs
+├── docker-compose.yml ← Coordination des conteneurs
 
 ```
 

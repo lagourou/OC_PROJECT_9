@@ -51,10 +51,4 @@ public class NoteController {
         return ResponseEntity.status(HttpStatus.CREATED).body(noteMapper.toDto(saveNote));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<Void> deleteNote(@PathVariable String id) {
-        noteService.deleteById(id);
-        return ResponseEntity.noContent().build();
-    }
-
 }
