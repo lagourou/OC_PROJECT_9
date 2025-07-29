@@ -20,8 +20,10 @@ coverage/
 *.class
 *.log
 
-# Exclusions spécifiques avec exceptions
+# Exclusion des dossiers Target
 **/target/
+
+# Exclusions spécifiques avec exceptions
 !**/src/main/**/build/
 !**/src/test/**/build/
 
