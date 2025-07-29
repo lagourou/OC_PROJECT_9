@@ -1,9 +1,0 @@
-/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/note-service/src/main/java/com/oc_p9/note_service/NoteServiceApplication.java
-/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/note-service/src/main/java/com/oc_p9/note_service/controller/NoteController.java
-/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/note-service/src/main/java/com/oc_p9/note_service/dto/NoteDTO.java
-/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/note-service/src/main/java/com/oc_p9/note_service/exception/GlobalExceptionHandler.java
-/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/note-service/src/main/java/com/oc_p9/note_service/exception/NoteNotFoundException.java
-/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/note-service/src/main/java/com/oc_p9/note_service/mapper/NoteMapper.java
-/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/note-service/src/main/java/com/oc_p9/note_service/model/Note.java
-/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/note-service/src/main/java/com/oc_p9/note_service/repository/NoteRepository.java
-/mnt/c/Users/AGOUROU GUSTAVE/Downloads/Open Classroom/P9/medilabo/note-service/src/main/java/com/oc_p9/note_service/service/NoteService.java
