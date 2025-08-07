@@ -1,7 +1,6 @@
 package com.oc_p9.gateway_service.configuration;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.http.HttpMethod;
 import org.springframework.security.config.web.server.ServerHttpSecurity;
 
 import static org.junit.jupiter.api.Assertions.*;

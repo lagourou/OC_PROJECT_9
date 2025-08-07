@@ -8,7 +8,7 @@ export class AuthGuard implements CanActivate {
   constructor(private router: Router) {}
 
   canActivate(): boolean | UrlTree {
-    // Ici tu peux vérifier si l'utilisateur est connecté, par exemple via un token dans localStorage
+    // Ici tu peux vérifier si l'utilisateur est connecté via un token
     const isLoggedIn = !!localStorage.getItem("token");
     if (isLoggedIn) {
       return true;

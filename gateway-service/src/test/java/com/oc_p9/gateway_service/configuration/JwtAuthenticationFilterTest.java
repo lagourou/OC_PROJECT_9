@@ -1,21 +1,21 @@
 package com.oc_p9.gateway_service.configuration;
 
-import com.oc_p9.gateway_service.util.JwtUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.Mockito;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoInteractions;
+import static org.mockito.Mockito.when;
 import org.springframework.http.HttpCookie;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpMethod;
-import org.springframework.http.server.reactive.ServerHttpRequest;
 import org.springframework.mock.http.server.reactive.MockServerHttpRequest;
 import org.springframework.mock.web.server.MockServerWebExchange;
 import org.springframework.web.server.WebFilterChain;
+
+import com.oc_p9.gateway_service.util.JwtUtil;
+
 import reactor.core.publisher.Mono;
-
-import java.util.List;
-
-import static org.mockito.Mockito.*;
 
 class JwtAuthenticationFilterTest {
 

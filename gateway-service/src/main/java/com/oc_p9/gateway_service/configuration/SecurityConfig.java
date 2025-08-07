@@ -30,7 +30,8 @@ public class SecurityConfig {
     }
 
     /**
-     * Définit le comportement quand un utilisateur non authentifié tente d'accéder à une ressource protégée.
+     * Définit le comportement quand un utilisateur non authentifié tente d'accéder
+     * à une ressource protégée.
      *
      * @return une réponse 401 si l'utilisateur n'est pas autorisé.
      */
