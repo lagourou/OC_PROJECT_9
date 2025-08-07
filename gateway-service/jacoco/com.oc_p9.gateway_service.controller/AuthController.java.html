@@ -14,67 +14,104 @@ import com.oc_p9.gateway_service.util.JwtUtil;
 
 import reactor.core.publisher.Mono;
 
+/**
+ * Contrôleur d'authentification pour gérer la connexion et la déconnexion.
+ */
 @RestController
 public class AuthController {
 
     private final JwtUtil jwtUtil;
-<span class="fc" id="L21">    private final long validityInSeconds = 3600;</span>
+<span class="fc" id="L24">    private final long validityInSeconds = 3600;</span>
 
-<span class="fc" id="L23">    public AuthController(JwtUtil jwtUtil) {</span>
-<span class="fc" id="L24">        this.jwtUtil = jwtUtil;</span>
-<span class="fc" id="L25">    }</span>
+    /**
+     * Crée un nouveau contrôleur avec l'outil JWT.
+     *
+     * @param jwtUtil outil pour générer les tokens JWT
+     */
+<span class="fc" id="L31">    public AuthController(JwtUtil jwtUtil) {</span>
+<span class="fc" id="L32">        this.jwtUtil = jwtUtil;</span>
+<span class="fc" id="L33">    }</span>
 
-<span class="fc" id="L27">    public static class AuthRequest {</span>
+    /**
+     * Représente une requête de connexion avec nom d'utilisateur et mot de passe.
+     */
+<span class="fc" id="L38">    public static class AuthRequest {</span>
         public String username;
         public String password;
     }
 
+    /**
+     * Réponse envoyée après une connexion réussie, contenant le token JWT.
+     */
     public static class AuthResponse {
         public String token;
 
-<span class="fc" id="L35">        public AuthResponse(String token) {</span>
-<span class="fc" id="L36">            this.token = token;</span>
-<span class="fc" id="L37">        }</span>
+<span class="fc" id="L49">        public AuthResponse(String token) {</span>
+<span class="fc" id="L50">            this.token = token;</span>
+<span class="fc" id="L51">        }</span>
     }
 
+    /**
+     * Endpoint POST pour se connecter.
+     * Vérifie les identifiants, génère un token JWT et le stocke dans un cookie
+     * httpOnly.
+     *
+     * @param request les identifiants de l'utilisateur
+     * @return réponse avec le token JWT ou erreur 401 si les identifiants sont
+     *         invalides
+     */
     @PostMapping(value = &quot;/auth/login&quot;, produces = MediaType.APPLICATION_JSON_VALUE)
     public Mono&lt;ResponseEntity&lt;AuthResponse&gt;&gt; login(@RequestBody AuthRequest request) {
-<span class="fc bfc" id="L42" title="All 2 branches covered.">        if (isValidUser(request.username, request.password)) {</span>
-<span class="fc" id="L43">            String token = jwtUtil.generateToken(request.username);</span>
+<span class="fc bfc" id="L65" title="All 2 branches covered.">        if (isValidUser(request.username, request.password)) {</span>
+<span class="fc" id="L66">            String token = jwtUtil.generateToken(request.username);</span>
 
-<span class="fc" id="L45">            ResponseCookie cookie = ResponseCookie.from(&quot;jwt&quot;, token)</span>
-<span class="fc" id="L46">                    .httpOnly(true)</span>
-<span class="fc" id="L47">                    .secure(false)</span>
-<span class="fc" id="L48">                    .sameSite(&quot;Lax&quot;)</span>
-<span class="fc" id="L49">                    .path(&quot;/&quot;)</span>
-<span class="fc" id="L50">                    .maxAge(Duration.ofSeconds(validityInSeconds))</span>
-<span class="fc" id="L51">                    .build();</span>
+<span class="fc" id="L68">            ResponseCookie cookie = ResponseCookie.from(&quot;jwt&quot;, token)</span>
+<span class="fc" id="L69">                    .httpOnly(true) // Cookie réserver qu'au échange Http (requêtes/réponses)</span>
+<span class="fc" id="L70">                    .secure(false)// Le cookie est envoyé même sans HTTPS</span>
+<span class="fc" id="L71">                    .sameSite(&quot;Lax&quot;)// Le cookie est envoyé seulement dans des cas sûrs</span>
+<span class="fc" id="L72">                    .path(&quot;/&quot;) // Le cookie est accessible sur toutes les routes</span>
+<span class="fc" id="L73">                    .maxAge(Duration.ofSeconds(validityInSeconds))</span>
+<span class="fc" id="L74">                    .build();</span>
 
-<span class="fc" id="L53">            return Mono.just(ResponseEntity.ok()</span>
-<span class="fc" id="L54">                    .header(HttpHeaders.SET_COOKIE, cookie.toString())</span>
-<span class="fc" id="L55">                    .body(new AuthResponse(token)));</span>
+<span class="fc" id="L76">            return Mono.just(ResponseEntity.ok()</span>
+<span class="fc" id="L77">                    .header(HttpHeaders.SET_COOKIE, cookie.toString())</span>
+<span class="fc" id="L78">                    .body(new AuthResponse(token)));</span>
         } else {
-<span class="fc" id="L57">            return Mono.just(ResponseEntity.status(401).build());</span>
+<span class="fc" id="L80">            return Mono.just(ResponseEntity.status(401).build());</span>
         }
     }
 
+    /**
+     * Endpoint POST pour se déconnecter.
+     * Supprime le cookie JWT en le remplaçant par un cookie expiré.
+     *
+     * @return réponse vide avec cookie supprimé
+     */
     @PostMapping(&quot;/auth/logout&quot;)
     public Mono&lt;ResponseEntity&lt;Void&gt;&gt; logout() {
-<span class="fc" id="L63">        ResponseCookie expiredCookie = ResponseCookie.from(&quot;jwt&quot;, &quot;&quot;)</span>
-<span class="fc" id="L64">                .httpOnly(true)</span>
-<span class="fc" id="L65">                .secure(false)</span>
-<span class="fc" id="L66">                .sameSite(&quot;Lax&quot;)</span>
-<span class="fc" id="L67">                .path(&quot;/&quot;)</span>
-<span class="fc" id="L68">                .maxAge(0)</span>
-<span class="fc" id="L69">                .build();</span>
+<span class="fc" id="L92">        ResponseCookie expiredCookie = ResponseCookie.from(&quot;jwt&quot;, &quot;&quot;)</span>
+<span class="fc" id="L93">                .httpOnly(true)</span>
+<span class="fc" id="L94">                .secure(false)</span>
+<span class="fc" id="L95">                .sameSite(&quot;Lax&quot;)</span>
+<span class="fc" id="L96">                .path(&quot;/&quot;)</span>
+<span class="fc" id="L97">                .maxAge(0)</span>
+<span class="fc" id="L98">                .build();</span>
 
-<span class="fc" id="L71">        return Mono.just(ResponseEntity.ok()</span>
-<span class="fc" id="L72">                .header(HttpHeaders.SET_COOKIE, expiredCookie.toString())</span>
-<span class="fc" id="L73">                .build());</span>
+<span class="fc" id="L100">        return Mono.just(ResponseEntity.ok()</span>
+<span class="fc" id="L101">                .header(HttpHeaders.SET_COOKIE, expiredCookie.toString())</span>
+<span class="fc" id="L102">                .build());</span>
     }
 
+    /**
+     * Vérifie si l'utilisateur est valide.
+     * Ici, seul &quot;admin&quot; avec mot de passe &quot;password&quot; est accepté.
+     *
+     * @param username nom d'utilisateur
+     * @param password mot de passe
+     * @return true si valide, false sinon
+     */
     private boolean isValidUser(String username, String password) {
-<span class="pc bpc" id="L77" title="1 of 4 branches missed.">        return &quot;admin&quot;.equals(username) &amp;&amp; &quot;password&quot;.equals(password);</span>
+<span class="pc bpc" id="L114" title="1 of 4 branches missed.">        return &quot;admin&quot;.equals(username) &amp;&amp; &quot;password&quot;.equals(password);</span>
     }
 }
 </pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.8.202204050719</span></div></body></html>

@@ -30,15 +30,16 @@ public class SecurityConfig {
 <span class="fc" id="L30">    }</span>
 
     /**
-     * Définit le comportement quand un utilisateur non authentifié tente d'accéder à une ressource protégée.
+     * Définit le comportement quand un utilisateur non authentifié tente d'accéder
+     * à une ressource protégée.
      *
      * @return une réponse 401 si l'utilisateur n'est pas autorisé.
      */
     @Bean
     public ServerAuthenticationEntryPoint unauthorizedEntryPoint() {
-<span class="fc" id="L39">        return (exchange, ex) -&gt; {</span>
-<span class="fc" id="L40">            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);</span>
-<span class="fc" id="L41">            return exchange.getResponse().setComplete();</span>
+<span class="fc" id="L40">        return (exchange, ex) -&gt; {</span>
+<span class="fc" id="L41">            exchange.getResponse().setStatusCode(HttpStatus.UNAUTHORIZED);</span>
+<span class="fc" id="L42">            return exchange.getResponse().setComplete();</span>
         };
     }
 
@@ -49,17 +50,17 @@ public class SecurityConfig {
      */
     @Bean
     public SecurityWebFilterChain securityFilterChain(ServerHttpSecurity http) {
-<span class="fc" id="L52">        return http</span>
-<span class="fc" id="L53">                .csrf(ServerHttpSecurity.CsrfSpec::disable)</span>
-<span class="fc" id="L54">                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)</span>
-<span class="fc" id="L55">                .exceptionHandling(e -&gt; e.authenticationEntryPoint(unauthorizedEntryPoint()))</span>
-<span class="fc" id="L56">                .authorizeExchange(exchanges -&gt; exchanges</span>
-<span class="fc" id="L57">                        .pathMatchers(HttpMethod.OPTIONS, &quot;/**&quot;).permitAll()</span>
-<span class="fc" id="L58">                        .pathMatchers(&quot;/auth/**&quot;).permitAll()</span>
-<span class="fc" id="L59">                        .pathMatchers(&quot;/actuator/**&quot;).permitAll()</span>
-<span class="fc" id="L60">                        .pathMatchers(&quot;/api/**&quot;).authenticated())</span>
-<span class="fc" id="L61">                .addFilterAt(jwtFilter, SecurityWebFiltersOrder.AUTHENTICATION)</span>
-<span class="fc" id="L62">                .build();</span>
+<span class="fc" id="L53">        return http</span>
+<span class="fc" id="L54">                .csrf(ServerHttpSecurity.CsrfSpec::disable)</span>
+<span class="fc" id="L55">                .httpBasic(ServerHttpSecurity.HttpBasicSpec::disable)</span>
+<span class="fc" id="L56">                .exceptionHandling(e -&gt; e.authenticationEntryPoint(unauthorizedEntryPoint()))</span>
+<span class="fc" id="L57">                .authorizeExchange(exchanges -&gt; exchanges</span>
+<span class="fc" id="L58">                        .pathMatchers(HttpMethod.OPTIONS, &quot;/**&quot;).permitAll()</span>
+<span class="fc" id="L59">                        .pathMatchers(&quot;/auth/**&quot;).permitAll()</span>
+<span class="fc" id="L60">                        .pathMatchers(&quot;/actuator/**&quot;).permitAll()</span>
+<span class="fc" id="L61">                        .pathMatchers(&quot;/api/**&quot;).authenticated())</span>
+<span class="fc" id="L62">                .addFilterAt(jwtFilter, SecurityWebFiltersOrder.AUTHENTICATION)</span>
+<span class="fc" id="L63">                .build();</span>
     }
 
 }
