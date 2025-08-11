@@ -3,10 +3,12 @@ import { HttpClient } from "@angular/common/http";
 import { Router } from "@angular/router";
 import { BehaviorSubject, Observable } from "rxjs";
 import { tap } from "rxjs/operators";
+import { environment } from "../../environments/environment";
 
 @Injectable({ providedIn: "root" })
 export class AuthService {
   private isAuthenticated = new BehaviorSubject<boolean>(false);
+  private baseUrl = `${environment.apiUrl}/auth/login`;
 
   constructor(private http: HttpClient, private router: Router) {}
 
@@ -14,14 +16,15 @@ export class AuthService {
     return this.isAuthenticated.asObservable();
   }
 
-  login(username: string, password: string): Observable<{ token: string }> {
+  login(username: string, password: string): Observable<any> {
     return this.http
-      .post<{ token: string }>("/auth/login", { username, password })
+      .post<{ token: string }>(
+        this.baseUrl,
+        { username, password },
+        { withCredentials: true }
+      )
       .pipe(
         tap((response) => {
-          console.log("Réponse du backend:", response);
-          console.log("Token extrait:", response.token);
-
           localStorage.setItem("token", response.token);
           this.setLoggedIn();
           this.router.navigate(["/patients"]);
@@ -34,8 +37,8 @@ export class AuthService {
   }
 
   logout(): void {
-    this.isAuthenticated.next(false);
     localStorage.removeItem("token");
+    this.isAuthenticated.next(false);
     this.router.navigate(["/login"]);
   }
 

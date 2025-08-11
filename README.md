@@ -134,3 +134,17 @@ OC_PROJECT_9/
 - Voir l’historique des notes du patient pour connaître ses antécédents médicaux
 - Ajouter une note à l’historique
 - Obtenir automatiquement une évaluation du risque de diabète
+
+---
+
+# Green code
+
+Le **Green Code** désigne une approche de développement qui permet de réduire l'empreinte écologique des applications.
+L'objectif est de diminuer la consommation d'énergie et l'usage des ressources, tout en ayant des performances optimales.
+
+Pour ce projet je vous propose quelques recommandations pour respecter le principe du Green code:
+
+- **Nettoyer le code** : supprimer les fonctions non utilisées
+- **Optimiser les appels entre microservices** : éviter les requêtes inutiles
+- **Moins de consommation d'énergie** : utiliser des threads afin de d'éxecuter des tâches en parallèle sans surcharger le processeur ça permet de d'avoir des traitements plus rapide et avec moins de ressources
+- **Docker** : utiliser des images Docker plus légères (ex : Alpine Linux)
