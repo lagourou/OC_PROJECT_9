@@ -1,9 +1,14 @@
-FROM openjdk:26-oraclelinux9
+FROM eclipse-temurin:17-jdk
 
 WORKDIR /app
 
-COPY target/diabetes-assessment-service-0.0.1-SNAPSHOT.jar /app/medilabo.jar
+COPY .mvn/ .mvn
+COPY mvnw pom.xml ./
+RUN ./mvnw dependency:go-offline
+
+COPY src ./src
+RUN ./mvnw package -DskipTests
 
 EXPOSE 8083
 
-ENTRYPOINT [ "java", "-jar", "/app/medilabo.jar" ]
+CMD ["java", "-jar", "target/diabetes-assessment-service-0.0.1-SNAPSHOT.jar"]
