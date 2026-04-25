@@ -18,7 +18,11 @@ coverage/
 # Java / Maven / STS
 .mvn/wrapper/maven-wrapper.jar
 *.class
+
+# Logs
 *.log
+logs/
+*/logs/
 
 # Exclusion des dossiers Target
 **/target/
